@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/stye.css">
+    <title>Sistema de medição de grandezas físicas</title>
+</head>
+<body>
+    <header>
+        <a href="../index.html">Boas Vindas</a>
+        <a href="./calortemp.html">O que é calor?</a>
+        <a href="./medida.html">O que é medida?</a>
+        <a href="./sensores.html">Aprenda sobre sensores!</a>
+        <a href="./digital_analog.html">Digital e Analógico.</a>
+        <a href="./dimerizacao.html">dimerização.</a>
+        <a href="./fotos.html">Fotos sensores</a>
+    </header>
+    <main>
+        <h1>O que é dimerização?</h1><br><hr>
+        <p>A dimerização é o processo de controle da intensidade de brilho de um dispositivo, como um LED. Em vez de apenas ligar ou desligar, a dimerização permite ajustar o nível de luminosidade de forma gradual, deixando a luz mais fraca ou mais forte conforme necessário. Esse controle é geralmente realizado por meio de uma técnica chamada PWM (modulação por largura de pulso), que varia o tempo em que o sinal permanece ligado dentro de um intervalo.</p><br><hr>
+        <h1>Apresente um exemplo de dimerização com o LED a partir de um programa temporizado (a cada 100 ms)</h1><br><hr>
+        <p>int led = 9;<br>
+            int brilho = 0;<br>
+            int incremento = 5;<br>
+            
+            void setup() {<br>
+              pinMode(led, OUTPUT);<br>
+            }<br>
+            
+            void loop() {<br>
+              analogWrite(led, brilho);<br>
+              brilho = brilho + incremento;<br>
+            
+              if (brilho <= 0 || brilho >= 255) {<br>
+                incremento = -incremento;<br>
+              }<br>
+            
+              delay(100);<br>
+            }</p><br><hr>
+            <h1>Apresente um exemplo de dimerização com o LED a partir de comandos enviados por botão
+                do tipo “push button”</h1><br><hr>
+                <p>int led = 9;<br>
+                    int botao = 7;<br>
+                    
+                    int brilho = 0;<br>
+                    int incremento = 5;<br>
+                    
+                    bool estadoAnterior = HIGH;<br>
+                    
+                    void setup() {<br>
+                      pinMode(led, OUTPUT);<br>
+                      pinMode(botao, INPUT_PULLUP);<br>
+                    }<br>
+                    
+                    void loop() {<br>
+                    
+                      bool estadoBotao = digitalRead(botao);<br>
+                    
+                      // Detecta o clique<br>
+                      if (estadoBotao == LOW && estadoAnterior == HIGH) {<br>
+                    
+                        brilho += incremento;<br>
+                    
+                        if (brilho > 255) {<br>
+                          brilho = 255;<br>
+                        } <br>
+                    
+                        analogWrite(led, brilho); // aumenta o brilho do LED <br>
+                        delay(200); // debounce <br>
+                      } <br>
+                    
+                      estadoAnterior = estadoBotao;<br>
+                    }</p><br><hr>
+
+
+    </main>
+    <footer>
+        By Daniel &trade; &copy;
+    </footer>
+
+        
+</body>
+</html>
