@@ -42,9 +42,9 @@ a {
     width: 100%;
   }
 
-img, fotos{
-  width: 180px;
-  height: 150px;
+.fotos img{
+  width: 250px;
+  height: auto;
 }
 
 iframe{
@@ -52,7 +52,7 @@ iframe{
   width: 250px;
 }
 
-sala, img{
+.sala img{
   width: 500px;
-  height: 500px;
+  height: auto;
 }
